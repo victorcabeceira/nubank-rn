@@ -1,8 +1,7 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import { Animated } from 'react-native';
-import { PanGestureHandler, State } from 'react-native-gesture-handler';
+import { PanGestureHandler } from 'react-native-gesture-handler';
 
 import Menu from './Menu';
 

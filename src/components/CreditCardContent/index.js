@@ -17,23 +17,8 @@ import {
   Annotation
 } from './styles';
 
-const CreditCardContent = () => {
-  const translateY = new Animated.Value(0);
-
-  const animatedEvent = Animated.event(
-    [
-      {
-        nativeEvent: {
-          translationY: translateY
-        }
-      }
-    ],
-    { useNativeDriver: true }
-  );
-
-  const onHandlerStateChange = event => {};
-
-  return (
+const CreditCardContent = ({ translateY, animatedEvent, onHandlerStateChange }) => {
+    return (
     <Content>
       <Menu translateY={translateY} />
 

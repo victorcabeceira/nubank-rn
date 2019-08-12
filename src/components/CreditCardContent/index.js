@@ -1,6 +1,9 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import { Animated } from 'react-native';
+import { PanGestureHandler, State } from 'react-native-gesture-handler';
+
 import Menu from './Menu';
 
 import {
@@ -15,26 +18,55 @@ import {
 } from './styles';
 
 const CreditCardContent = () => {
+  const translateY = new Animated.Value(0);
+
+  const animatedEvent = Animated.event(
+    [
+      {
+        nativeEvent: {
+          translationY: translateY
+        }
+      }
+    ],
+    { useNativeDriver: true }
+  );
+
+  const onHandlerStateChange = event => {};
+
   return (
     <Content>
-      <Menu />
-      <Card>
-        <CardHeader>
-          <Icon name='attach-money' size={28} color='#666' />
-          <Icon name='visibility-off' size={28} color='#666' />
-        </CardHeader>
+      <Menu translateY={translateY} />
 
-        <CardContent>
-          <Title>Saldo disponível</Title>
-          <Description>R$ 200.125,62</Description>
-        </CardContent>
+      <PanGestureHandler
+        onGestureEvent={animatedEvent}
+        onHandlerStateChange={onHandlerStateChange}
+      >
+        <Card style={{
+          transform: [{
+            translateY: translateY.interpolate({
+              inputRange: [-350, 0, 380],
+              outputRange: [-50, 0, 380],
+              extrapolate: 'clamp'
+            }),
+          }]
+        }}>
+          <CardHeader>
+            <Icon name='attach-money' size={28} color='#666' />
+            <Icon name='visibility-off' size={28} color='#666' />
+          </CardHeader>
 
-        <CardFooter>
-          <Annotation>
-            Transferência de R$ 20,00 recebida de Fulano de Tal hoje às 13:00h
-          </Annotation>
-        </CardFooter>
-      </Card>
+          <CardContent>
+            <Title>Saldo disponível</Title>
+            <Description>R$ 200.125,62</Description>
+          </CardContent>
+
+          <CardFooter>
+            <Annotation>
+              Transferência de R$ 20,00 recebida de Fulano de Tal hoje às 13:00h
+            </Annotation>
+          </CardFooter>
+        </Card>
+      </PanGestureHandler>
     </Content>
   );
 };

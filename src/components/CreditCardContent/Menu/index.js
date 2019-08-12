@@ -16,9 +16,16 @@ import {
 // QRCode libs require older rn versions, so I used an image
 import nubank_qrcode from '../../../assets/nubank_qrcode.png';
 
-const Menu = () => {
+const Menu = ({ translateY }) => {
   return (
-    <Container>
+    <Container
+      style={{
+        opacity: translateY.interpolate({
+          inputRange: [0, 320],
+          outputRange: [0, 1]
+        })
+      }}
+    >
       <Code>
         <QRCode source={nubank_qrcode} />
       </Code>

@@ -27,7 +27,7 @@ const Main = () => {
 
   return (
     <Container>
-      <Header translateY={translateY} />
+      <Header />
       <CreditCardContent onHandlerStateChange={onHandlerStateChange} animatedEvent={animatedEvent} translateY={translateY} />
       <Tabs translateY={translateY} />
     </Container>

@@ -1,6 +1,8 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import Menu from './Menu';
+
 import {
   Content,
   Card,
@@ -15,6 +17,7 @@ import {
 const CreditCardContent = () => {
   return (
     <Content>
+      <Menu />
       <Card>
         <CardHeader>
           <Icon name='attach-money' size={28} color='#666' />
